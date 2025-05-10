@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DatosEnemigo : MonoBehaviour
 {
-    public int health = 10;
+    public int health = 100;
     public int rutina;
     public float cronometro;
     public Animator ani;
