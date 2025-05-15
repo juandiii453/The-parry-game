@@ -1,20 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackEnemy : MonoBehaviour
 {
-    [SerializeField]
-    private int damage = 10;
+    public GameObject enemigo;
 
-    
-
-
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider coll)
     {
-        if(other.tag == "Player")
+        if (coll.CompareTag("Player"))
         {
-            other.GetComponent<PlayerController>().health -= damage;
+            PlayerController player = coll.GetComponent<PlayerController>();
+            if (player != null)
+            {
+                player.ChangeHealth(10); // Restar 10 de vida
+            }
+        }
+        if (coll.CompareTag("parrry"))
+        {
+            enemigo.GetComponent<DatosEnemigo>().weekstate = true;
+            enemigo.GetComponent<DatosEnemigo>().stuneado = true;
+            enemigo.GetComponent<Animator>().SetBool("stun",true);
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+
+            
         }
     }
 }

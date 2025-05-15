@@ -15,17 +15,6 @@ public class PlayerController: MonoBehaviour
     public bool dead;
     public HealthManager nm;
 
-
-
-    void OnTriggerEnter(Collider coll)
-    {
-      if (coll.CompareTag("enemigo"))
-      {
-        health -= 10;
-      }
-    }
-
-
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
