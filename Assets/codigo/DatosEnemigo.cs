@@ -10,21 +10,15 @@ public class DatosEnemigo : MonoBehaviour
     public Animator ani;
     public Quaternion angulo;
     public float grado;
-    public bool weekstate;
 
     public GameObject target;
     public bool atacando;
-
-    public GameObject arma;
-    public bool stuneado;
 
 
     public void Final_Ani()
     {
         ani.SetBool("attack", false);
         atacando = false;
-        stuneado = false ;
-        weekstate = false ;
     }
 
     void Start()
@@ -63,7 +57,7 @@ public class DatosEnemigo : MonoBehaviour
         }
         else
         {
-            if (Vector3.Distance(transform.position, target.transform.position) > 5)
+            if (Vector3.Distance(transform.position, target.transform.position) > 3)
             {
                 var lookPos = target.transform.position - transform.position;
                 lookPos.y = 0;
@@ -77,25 +71,14 @@ public class DatosEnemigo : MonoBehaviour
             }
             else
             {
-                if (!stuneado) 
-                {
                 ani.SetBool("walk", false);
                 ani.SetBool("run", false);
 
                 ani.SetBool("attack", true);
                 atacando = true;
-                }
             }
 
         }
-    }
-    public void ColliderWeaponTrue()
-    {
-        arma.GetComponent<BoxCollider>().enabled = true;
-    }
-    public void ColliderWeaponFalse()
-    {
-        arma.GetComponent<BoxCollider>().enabled = false;
     }
    
 
