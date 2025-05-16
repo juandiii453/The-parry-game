@@ -19,6 +19,10 @@ public class DatosEnemigo : MonoBehaviour
     private float cronometro;
     private int rutina;
 
+    // Tiempo entre ataques
+    public float tiempoEntreAtaques = 2f;
+    private float tiempoDesdeUltimoAtaque = 0f;
+
     public void Final_Ani()
     {
         ani.SetBool("attack", false);
@@ -35,10 +39,8 @@ public class DatosEnemigo : MonoBehaviour
 
     public void Comportamiento_Enemigo()
     {
-        // Verifica si el target todavía existe
         if (target == null)
         {
-            // Intenta buscarlo nuevamente
             GameObject nuevoTarget = GameObject.Find("parry");
             if (nuevoTarget != null)
             {
@@ -46,7 +48,7 @@ public class DatosEnemigo : MonoBehaviour
             }
             else
             {
-                return; // No hay target, termina la función
+                return;
             }
         }
 
@@ -92,6 +94,9 @@ public class DatosEnemigo : MonoBehaviour
                 ani.SetBool("run", true);
                 transform.Translate(Vector3.forward * 7 * Time.deltaTime);
                 ani.SetBool("attack", false);
+
+                // Reinicia temporizador si está fuera del rango de ataque
+                tiempoDesdeUltimoAtaque = tiempoEntreAtaques;
             }
             else
             {
@@ -99,8 +104,17 @@ public class DatosEnemigo : MonoBehaviour
                 {
                     ani.SetBool("walk", false);
                     ani.SetBool("run", false);
-                    ani.SetBool("attack", true);
-                    atacando = true;
+
+                    // Aumentar el tiempo desde el último ataque
+                    tiempoDesdeUltimoAtaque += Time.deltaTime;
+
+                    // Ataca solo si pasó el tiempo necesario
+                    if (tiempoDesdeUltimoAtaque >= tiempoEntreAtaques)
+                    {
+                        ani.SetBool("attack", true);
+                        atacando = true;
+                        tiempoDesdeUltimoAtaque = 0f;
+                    }
                 }
             }
         }
@@ -123,3 +137,5 @@ public class DatosEnemigo : MonoBehaviour
         Comportamiento_Enemigo();
     }
 }
+
+
