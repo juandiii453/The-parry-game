@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class attack : MonoBehaviour
 {
-    public GameObject Filo;
+    public GameObject parrry;
 
 
     private void Start()
     {
-        Filo.GetComponent<BoxCollider>().isTrigger = false;
+        parrry.GetComponent<BoxCollider>().enabled = false;
     }
     
 
@@ -18,13 +18,13 @@ public class attack : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             gameObject.GetComponent<Animator>().SetTrigger("parry");
-            Filo.GetComponent<BoxCollider>().isTrigger = true;
+            parrry.GetComponent<BoxCollider>().enabled = true;
             StartCoroutine(finAtaque());
         }
     }
     IEnumerator finAtaque()
     {
         yield return new WaitForSeconds (0.3f);
-        Filo.GetComponent<BoxCollider>().isTrigger = false;
+        parrry.GetComponent<BoxCollider>().enabled = false;
     }
 }

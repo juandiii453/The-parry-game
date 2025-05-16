@@ -6,16 +6,20 @@ public class weekstate : MonoBehaviour
 {
     [SerializeField]
     private int damage = 10;
+    public GameObject enemigo;
 
     
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "enemigo")
+        if (other.CompareTag("enemigo"))
         {
-            other.GetComponent<DatosEnemigo>().health -= damage;
+            DatosEnemigo datos = other.GetComponent<DatosEnemigo>();
+            if (datos != null && datos.weekstate == true)
+            {
+                datos.health -= damage;
+            }
         }
     }
-
 }
