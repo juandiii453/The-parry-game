@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             MuerteJugador?.Invoke(this, EventArgs.Empty);
-            Destroy(gameObject); // Esto destruye el jugador (target del enemigo)
+            gameObject.SetActive (false);
         }
     }
 

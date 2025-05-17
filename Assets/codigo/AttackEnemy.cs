@@ -3,6 +3,7 @@ using UnityEngine;
 public class AttackEnemy : MonoBehaviour
 {
     public GameObject enemigo;
+    public int damage = 10;
 
     void OnTriggerEnter(Collider coll)
     {
@@ -11,7 +12,7 @@ public class AttackEnemy : MonoBehaviour
             PlayerController player = coll.GetComponent<PlayerController>();
             if (player != null)
             {
-                player.ChangeHealth(10); // Restar 10 de vida
+                player.ChangeHealth(damage); // Restar 10 de vida
             }
         }
         if (coll.CompareTag("parrry"))

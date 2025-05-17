@@ -5,7 +5,7 @@ using UnityEngine;
 public class weekstate : MonoBehaviour
 {
     [SerializeField]
-    private int damage = 10;
+    public int damage = 10;
     public GameObject enemigo;
 
     

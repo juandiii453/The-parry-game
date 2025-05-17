@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1354052958530723697
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_StylizedPoison
+  m_Shader: {fileID: -6465566751694194690, guid: 8eef88ae773ef5f4dbe4da56da89303b, type: 3}
+  m_Parent: {fileID: 2100000, guid: 867ec64eba6038b4e95709fa94008027, type: 2}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _PERSPECTIVE
+  - _WORLD_SPACE_UV
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _SecondaryFoamTex:
+        m_Texture: {fileID: 2800000, guid: 8fe89cacd3cf0f944b321ad57a27b247, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceFoamTexture:
+        m_Texture: {fileID: 2800000, guid: c131cda12ace161478bdfac7d5b335cb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _HorizonDistance: 200
+    - _IntersectionFoamCutoff: 1.06
+    - _IntersectionFoamDirection: 0
+    - _IntersectionFoamSpeed: 0.38
+    - _IntersectionFoamTiling: 1.71
+    - _NormalSpeed: 0
+    - _NormalStrength: 1.01
+    - _ReflectionBlend: 0.67
+    - _RefractionSpeed: 0.05
+    - _RefractionStrength: 0.01
+    - _SurfaceFoamDirection: 1
+    - _SurfaceFoamDistorsion: 1
+    - _SurfaceFoamSpeed: 0.24
+    - _SurfaceFoamTiling: 8.79
+    - _WaterMetallic: 0.577
+    m_Colors:
+    - _CaveColor: {r: 0.21881218, g: 0.21216798, b: 0.4867924, a: 0}
+    - _HorizonColor: {r: 6.950159, g: 4.2356625, b: 6.4411907, a: 0}
+    - _IntersectionFoamColor: {r: 0.21822736, g: 3.9999995, b: 0, a: 1}
+    - _SecondaryFoamColor: {r: 0.18735576, g: 1, b: 0, a: 0}
+    - _ShallowColor: {r: 0.41134635, g: 4.945712, b: 0, a: 1}
+    - _SpecularColor: {r: 0, g: 0, b: 0, a: 0.31764707}
+    - _SurfaceFoamColor: {r: 1.3720132, g: 9.46504, b: 0, a: 0.21176471}
+  m_BuildTextureStacks: []
