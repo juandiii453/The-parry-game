@@ -12,22 +12,19 @@ public class MenuGameover : MonoBehaviour
     private void Start()
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-        if (!playerObject.activeInHierarchy)
+
+        if (playerObject != null)
         {
             playerController = playerObject.GetComponent<PlayerController>();
-            if (!playerObject.activeInHierarchy)
+            if (playerController != null)
             {
+                // Suscribirse al evento de muerte del jugador
                 playerController.MuerteJugador += ActivarMenu;
             }
-            /*else
-            {
-                Debug.LogError("PlayerController no encontrado en el objeto con tag 'Player'");
-            }*/
         }
-       /*else
-        {
-            Debug.LogError("No se encontró un GameObject con tag 'Player' en la escena.");
-        }*/
+
+        // Asegurarse que el menú esté desactivado al inicio
+        menuGameOver.SetActive(false);
     }
 
     private void ActivarMenu(object sender, EventArgs e)

@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public int health = 100;
     private new Rigidbody rigidbody;
-    public float movementSeed;
+
+    public float velocidadNormal = 3f;
 
     public Vector2 sensitivity;
     public Transform camara;
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             MuerteJugador?.Invoke(this, EventArgs.Empty);
-            gameObject.SetActive (false);
+            gameObject.SetActive(false);
         }
     }
 
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour
         if (hor != 0 || ver != 0)
         {
             Vector3 direction = (transform.forward * ver + transform.right * hor).normalized;
-            rigidbody.velocity = direction * movementSeed;
+            rigidbody.velocity = direction * velocidadNormal;
         }
         else
         {
@@ -79,3 +80,4 @@ public class PlayerController : MonoBehaviour
         UpdateMouselook();
     }
 }
+

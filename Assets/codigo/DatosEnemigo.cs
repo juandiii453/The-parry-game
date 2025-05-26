@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,9 +20,23 @@ public class DatosEnemigo : MonoBehaviour
     private float cronometro;
     private int rutina;
 
+    public event EventHandler MuerteEnemigo;
+
     // Tiempo entre ataques
     public float tiempoEntreAtaques = 2f;
     private float tiempoDesdeUltimoAtaque = 0f;
+
+    void Start()
+    {
+        ani = GetComponent<Animator>();
+        target = GameObject.Find("parry");
+    }
+
+    void Update()
+    {
+        Comportamiento_Enemigo();
+        health_dead();
+    }
 
     public void Final_Ani()
     {
@@ -31,25 +46,21 @@ public class DatosEnemigo : MonoBehaviour
         weekstate = false;
     }
 
-    void Start()
+    public void health_dead()
     {
-        ani = GetComponent<Animator>();
-        target = GameObject.Find("parry");
+        if (health <= 0)
+        {
+            MuerteEnemigo?.Invoke(this, EventArgs.Empty);
+            gameObject.SetActive(false);
+        }
     }
 
     public void Comportamiento_Enemigo()
     {
         if (target == null)
         {
-            GameObject nuevoTarget = GameObject.Find("parry");
-            if (nuevoTarget != null)
-            {
-                target = nuevoTarget;
-            }
-            else
-            {
-                return;
-            }
+            target = GameObject.Find("parry");
+            if (target == null) return;
         }
 
         float distancia = Vector3.Distance(transform.position, target.transform.position);
@@ -57,11 +68,11 @@ public class DatosEnemigo : MonoBehaviour
         if (distancia > 50)
         {
             ani.SetBool("run", false);
-            cronometro += 1 * Time.deltaTime;
+            cronometro += Time.deltaTime;
 
             if (cronometro >= 4)
             {
-                rutina = Random.Range(0, 2);
+                rutina = UnityEngine.Random.Range(0, 2);
                 cronometro = 0;
             }
 
@@ -70,11 +81,13 @@ public class DatosEnemigo : MonoBehaviour
                 case 0:
                     ani.SetBool("walk", false);
                     break;
+
                 case 1:
-                    grado = Random.Range(0, 360);
+                    grado = UnityEngine.Random.Range(0f, 360f);
                     angulo = Quaternion.Euler(0, grado, 0);
                     rutina++;
                     break;
+
                 case 2:
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, angulo, 0.5f);
                     transform.Translate(Vector3.forward * 3 * Time.deltaTime);
@@ -86,16 +99,16 @@ public class DatosEnemigo : MonoBehaviour
         {
             if (distancia > 5)
             {
-                var lookPos = target.transform.position - transform.position;
+                Vector3 lookPos = target.transform.position - transform.position;
                 lookPos.y = 0;
-                var rotation = Quaternion.LookRotation(lookPos);
+                Quaternion rotation = Quaternion.LookRotation(lookPos);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 3);
+
                 ani.SetBool("walk", false);
                 ani.SetBool("run", true);
                 transform.Translate(Vector3.forward * 7 * Time.deltaTime);
                 ani.SetBool("attack", false);
 
-                // Reinicia temporizador si está fuera del rango de ataque
                 tiempoDesdeUltimoAtaque = tiempoEntreAtaques;
             }
             else
@@ -105,10 +118,8 @@ public class DatosEnemigo : MonoBehaviour
                     ani.SetBool("walk", false);
                     ani.SetBool("run", false);
 
-                    // Aumentar el tiempo desde el último ataque
                     tiempoDesdeUltimoAtaque += Time.deltaTime;
 
-                    // Ataca solo si pasó el tiempo necesario
                     if (tiempoDesdeUltimoAtaque >= tiempoEntreAtaques)
                     {
                         ani.SetBool("attack", true);
@@ -131,11 +142,7 @@ public class DatosEnemigo : MonoBehaviour
         if (arma != null)
             arma.GetComponent<BoxCollider>().enabled = false;
     }
-
-    void Update()
-    {
-        Comportamiento_Enemigo();
-    }
 }
+
 
 

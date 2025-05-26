@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class weekstate : MonoBehaviour
+public class weekstateEnemy : MonoBehaviour
 {
     [SerializeField]
     public int damage = 10;
