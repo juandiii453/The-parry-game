@@ -52,6 +52,7 @@ public class DatosEnemigo : MonoBehaviour
         {
             MuerteEnemigo?.Invoke(this, EventArgs.Empty);
             gameObject.SetActive(false);
+            FindObjectOfType<SpawnEnemies>().Enemy_dead();
         }
     }
 
