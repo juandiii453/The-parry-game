@@ -6,7 +6,7 @@ using System;
 
 public class MenuGameover : MonoBehaviour 
 {
-    [SerializeField] private GameObject menuGameOver;
+    [SerializeField] private GameObject CanvasGameover;
     private PlayerController playerController;
 
     private void Start()
@@ -24,12 +24,12 @@ public class MenuGameover : MonoBehaviour
         }
 
         // Asegurarse que el menú esté desactivado al inicio
-        menuGameOver.SetActive(false);
+        CanvasGameover.SetActive(false);
     }
 
     private void ActivarMenu(object sender, EventArgs e)
     {
-        menuGameOver.SetActive(true);
+        CanvasGameover.SetActive(true);
     }
 
     public void Reiniciar()
